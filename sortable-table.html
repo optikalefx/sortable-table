@@ -346,6 +346,14 @@
 		dataSource: null,
 		userSort: false,
 		loading: false,
+		modifyRows: function(modifier) {
+			if(modifier) {
+				var rows = this.shadowRoot.querySelectorAll("tbody tr");
+				[].forEach.call(rows, function(row) {
+					modifier(row);
+				});
+			}
+		},
 		created: function(){
 			if(!this.data) this.data = [];
 			if(!this.columns) this.columns = [];
@@ -396,6 +404,7 @@
 					}
 				});
 			}
+			this.fire("loaded");
 			this.onMutation(this, this.ready);
 		},
 		/**
@@ -887,7 +896,8 @@
 			if(e.target.templateInstance && e.target.nodeName === "BUTTON") {
 				this.fire('btnClick', {
 					data: e.target.templateInstance.model.record.row,
-					target: e.target
+					target: e.target,
+					element: this
 				});
 			}
 
