@@ -881,6 +881,16 @@
 			}
 		},
 		rowSelect: function(e,p){
+
+			// fire an event btnClick on sortable-table on any button element
+			// TODO: make this more generic
+			if(e.target.templateInstance && e.target.nodeName === "BUTTON") {
+				this.fire('btnClick', {
+					data: e.target.templateInstance.model.record.row,
+					target: e.target
+				});
+			}
+
 			if(this.rowSelection && e.target.templateInstance && e.target.nodeName !== 'INPUT'){
 				var model = e.target.templateInstance.model;
 				var row = model.row;
