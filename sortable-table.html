@@ -350,7 +350,7 @@
 			if(modifier) {
 				var rows = this.shadowRoot.querySelectorAll("tbody tr");
 				[].forEach.call(rows, function(row) {
-					modifier(row);
+					modifier(row, row.templateInstance.model.record.row);
 				});
 			}
 		},
@@ -536,6 +536,7 @@
 			}
 			if(this.dataSource) this.dataSource.columns = this.columns;
 			this.forceRefresh++;
+
 		},
 		rowSelectionChanged: function(a,val){
 			var table = this.shadowRoot.querySelector('tbody')
