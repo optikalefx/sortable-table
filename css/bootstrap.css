@@ -436,6 +436,9 @@
 	vertical-align:top;
 	border-top:1px solid #ddd;
 }
+.bootstrap::shadow > table > tbody > tr > td.align-right {
+	text-align: right;
+}
 .bootstrap::shadow > table > tfoot > tr > th,
 .bootstrap::shadow > table > tfoot > tr > td {
 	line-height:1.42857143;
